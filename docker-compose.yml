@@ -1,0 +1,29 @@
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sql_server_db
+    environment:
+      - ACCEPT_EULA=Y
+      - 'MSSQL_SA_PASSWORD=Mozart_AI_2026!'
+      - UseInMemoryDatabase=false
+    ports:
+      - "1433:1433"
+    volumes:
+      - sql_data:/var/opt/mssql
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mozart_api_container
+    ports:
+      - "5001:8080"
+    depends_on:
+      - db
+    environment:
+      - UseInMemoryDatabase=false
+      - 'ConnectionStrings__DefaultConnection=Server=db;Database=CleanArchitectureDb;User Id=sa;Password=Mozart_AI_2026!;TrustServerCertificate=True'
+
+# Hatanın çözümü burası: Volume tanımını ekledik
+volumes:
+  sql_data:
