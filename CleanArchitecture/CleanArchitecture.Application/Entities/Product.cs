@@ -1,6 +1,6 @@
-﻿namespace CleanArchitecture.Core.Entities
+namespace CleanArchitecture.Core.Entities
 {
-    public class Product : AuditableBaseEntity
+    public class Product : AuditableBaseEntity<int>
     {
         public string Name { get; set; }
         public string Barcode { get; set; }

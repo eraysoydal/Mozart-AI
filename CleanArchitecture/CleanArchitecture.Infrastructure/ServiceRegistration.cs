@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Core.Interfaces;
+using CleanArchitecture.Core.Interfaces;
 using CleanArchitecture.Core.Interfaces.Repositories;
 using CleanArchitecture.Core.Wrappers;
 using CleanArchitecture.Core.Settings;
@@ -103,7 +103,11 @@ namespace CleanArchitecture.Infrastructure
             services.AddTransient(typeof(IGenericRepositoryAsync<>), typeof(GenericRepositoryAsync<>));
             services.AddTransient<IProductRepositoryAsync, ProductRepositoryAsync>();
             services.AddTransient<ICategoryRepositoryAsync, CategoryRepositoryAsync>();
+            services.AddTransient<ITrackRepositoryAsync, TrackRepositoryAsync>();
             #endregion
+
+            services.Configure<CloudFrontSettings>(configuration.GetSection("CloudFrontSettings"));
+            services.AddTransient<ICloudFrontService, CloudFrontService>();
         }
     }
 }

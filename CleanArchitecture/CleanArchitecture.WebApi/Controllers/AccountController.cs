@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Core.DTOs.Account;
+using CleanArchitecture.Core.DTOs.Account;
 using CleanArchitecture.Core.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -45,6 +45,15 @@ namespace CleanArchitecture.WebApi.Controllers
         {
 
             return Ok(await _accountService.ResetPassword(model));
+        }
+
+        [HttpGet("me")]
+        [Microsoft.AspNetCore.Authorization.Authorize]
+        public IActionResult GetCurrentUser()
+        {
+            var userId = User.Claims.FirstOrDefault(c => c.Type == "uid")?.Value;
+            var num = User.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            return Ok(new { UserId = userId ?? num });
         }
         private string GenerateIPAddress()
         {

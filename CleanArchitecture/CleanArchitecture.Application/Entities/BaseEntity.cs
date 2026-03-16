@@ -1,7 +1,7 @@
-﻿namespace CleanArchitecture.Core.Entities
+namespace CleanArchitecture.Core.Entities
 {
-    public abstract class BaseEntity
+    public abstract class BaseEntity<TId>
     {
-        public virtual int Id { get; set; }
+        public virtual TId Id { get; set; }
     }
 }

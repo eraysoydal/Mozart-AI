@@ -21,3 +21,15 @@ artifacts/
 
 # Mac
 .DS_Store
+
+# Secrets and AppSettings
+appsettings.json
+appsettings.Development.json
+*.pem
+
+# Temporary Files and Logs
+*.log
+*out.txt
+TmpAwsFind/
+Mozart*.json
+response.json

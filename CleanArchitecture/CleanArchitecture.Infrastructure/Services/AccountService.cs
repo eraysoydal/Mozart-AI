@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Core.DTOs.Account;
+using CleanArchitecture.Core.DTOs.Account;
 using CleanArchitecture.Core.DTOs.Email;
 using CleanArchitecture.Core.Enums;
 using CleanArchitecture.Core.Exceptions;
@@ -30,12 +30,14 @@ namespace CleanArchitecture.Infrastructure.Services
         private readonly IEmailService _emailService;
         private readonly JWTSettings _jwtSettings;
         private readonly IDateTimeService _dateTimeService;
+        private readonly CleanArchitecture.Infrastructure.Contexts.ApplicationDbContext _dbContext;
         public AccountService(UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager,
             IOptions<JWTSettings> jwtSettings,
             IDateTimeService dateTimeService,
             SignInManager<ApplicationUser> signInManager,
-            IEmailService emailService)
+            IEmailService emailService,
+            CleanArchitecture.Infrastructure.Contexts.ApplicationDbContext dbContext)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -43,6 +45,7 @@ namespace CleanArchitecture.Infrastructure.Services
             _dateTimeService = dateTimeService;
             _signInManager = signInManager;
             this._emailService = emailService;
+            _dbContext = dbContext;
         }
 
         public async Task<AuthenticationResponse> AuthenticateAsync(AuthenticationRequest request, string ipAddress)
@@ -96,6 +99,21 @@ namespace CleanArchitecture.Infrastructure.Services
                 if (result.Succeeded)
                 {
                     await _userManager.AddToRoleAsync(user, Roles.Basic.ToString());
+                    
+                    if (!_dbContext.Users.Any(u => u.Id == user.Id))
+                    {
+                        await _dbContext.Users.AddAsync(new CleanArchitecture.Core.Entities.User
+                        {
+                            Id = user.Id,
+                            Username = user.UserName,
+                            Email = user.Email,
+                            PasswordHash = user.PasswordHash,
+                            CreatedAt = System.DateTime.UtcNow,
+                            RoleId = CleanArchitecture.Core.Enums.UserRole.Listener
+                        });
+                        await _dbContext.SaveChangesAsync();
+                    }
+
                     var verificationUri = await SendVerificationEmail(user, origin);
                     //TODO: Attach Email Service here and configure it via appsettings
                     //await _emailService.SendAsync(new Core.DTOs.Email.EmailRequest() { From = "mail@codewithmukesh.com", To = user.Email, Body = $"Please confirm your account by visiting this URL {verificationUri}", Subject = "Confirm Registration" });

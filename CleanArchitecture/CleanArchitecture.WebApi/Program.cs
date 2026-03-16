@@ -65,39 +65,12 @@ Log.Logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(app.Configuration)
                 .CreateLogger();
 
-//Seed Default Data
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    var loggerFactory = services.GetRequiredService<ILoggerFactory>();
-    try
-    {
-        var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
-        var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-
-        await CleanArchitecture.Infrastructure.Seeds.DefaultRoles.SeedAsync(userManager, roleManager);
-        await CleanArchitecture.Infrastructure.Seeds.DefaultSuperAdmin.SeedAsync(userManager, roleManager);
-        await CleanArchitecture.Infrastructure.Seeds.DefaultBasicUser.SeedAsync(userManager, roleManager);
-        Log.Information("Finished Seeding Default Data");
-        Log.Information("Application Starting");
-    }
-    catch (Exception ex)
-    {
-        Log.Warning(ex, "An error occurred seeding the DB");
-    }
-    finally
-    {
-        Log.CloseAndFlush();
-    }
-}
-// Automatically create the database and migrate the tables.
-
+// Automatically create the database and migrate the tables BEFORE seeding.
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     try
     {
-
         var context = services.GetRequiredService<ApplicationDbContext>(); 
         if (context.Database.IsSqlServer())
         {
@@ -108,6 +81,33 @@ using (var scope = app.Services.CreateScope())
     {
         var logger = services.GetRequiredService<ILogger<Program>>();
         logger.LogError(ex, "Veritabanı oluşturulurken bir hata oluştu.");
+    }
+}
+
+//Seed Default Data
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var loggerFactory = services.GetRequiredService<ILoggerFactory>();
+    try
+    {
+        var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+        var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+        var dbContext = services.GetRequiredService<ApplicationDbContext>();
+
+        await CleanArchitecture.Infrastructure.Seeds.DefaultRoles.SeedAsync(userManager, roleManager);
+        await CleanArchitecture.Infrastructure.Seeds.DefaultSuperAdmin.SeedAsync(userManager, roleManager, dbContext);
+        await CleanArchitecture.Infrastructure.Seeds.DefaultBasicUser.SeedAsync(userManager, roleManager, dbContext);
+        Log.Information("Finished Seeding Default Data");
+        Log.Information("Application Starting");
+    }
+    catch (Exception ex)
+    {
+        Log.Warning(ex, "An error occurred seeding the DB");
+    }
+    finally
+    {
+        Log.CloseAndFlush();
     }
 }
 //Start the application

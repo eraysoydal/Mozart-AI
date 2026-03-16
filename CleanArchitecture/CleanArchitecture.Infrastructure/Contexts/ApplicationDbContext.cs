@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Core.Interfaces;
+using CleanArchitecture.Core.Interfaces;
 using CleanArchitecture.Core.Entities;
 using CleanArchitecture.Infrastructure.Models;
 using Microsoft.AspNetCore.Identity;
@@ -24,6 +24,23 @@ namespace CleanArchitecture.Infrastructure.Contexts
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+
+        public DbSet<User> Users { get; set; }
+        public DbSet<Playlist> Playlists { get; set; }
+        public DbSet<ArtistApplication> ArtistApplications { get; set; }
+        public DbSet<ArtistApplicationCycle2> ArtistApplicationCycle2s { get; set; }
+        public DbSet<Track> Tracks { get; set; }
+        public DbSet<AIVisual> AIVisuals { get; set; }
+        public DbSet<GenerativePrompt> GenerativePrompts { get; set; }
+        public DbSet<TrackStatistic> TrackStatistics { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+
+        public DbSet<Follower> Followers { get; set; }
+        public DbSet<TrackCollaborator> TrackCollaborators { get; set; }
+        public DbSet<PlaylistTrack> PlaylistTracks { get; set; }
+        public DbSet<Like> Likes { get; set; }
+        public DbSet<Share> Shares { get; set; }
+        public DbSet<Download> Downloads { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
@@ -88,6 +105,9 @@ namespace CleanArchitecture.Infrastructure.Contexts
             {
                 property.SetColumnType("decimal(18,6)");
             }
+
+            builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+
             base.OnModelCreating(builder);
         }
     }

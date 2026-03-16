@@ -4,5 +4,15 @@
         <name>CleanArchitecture.WebApi</name>
     </assembly>
     <members>
+        <member name="M:CleanArchitecture.WebApi.Controllers.v1.TrackController.Get(CleanArchitecture.Core.Features.Tracks.Queries.GetAllTracks.GetAllTracksParameter)">
+            <summary>
+            Get all music tracks (paginated). Requires authentication.
+            </summary>
+        </member>
+        <member name="M:CleanArchitecture.WebApi.Controllers.v1.TrackController.Post(CleanArchitecture.Core.Features.Tracks.Commands.CreateTrack.CreateTrackCommand)">
+            <summary>
+            Create a new music track.
+            </summary>
+        </member>
     </members>
 </doc>

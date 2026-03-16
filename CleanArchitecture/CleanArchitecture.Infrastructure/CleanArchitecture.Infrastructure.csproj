@@ -4,6 +4,8 @@
     <Version>1.1.0</Version>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="AWSSDK.CloudFront" Version="4.0.12.3" />
+    <PackageReference Include="AWSSDK.Extensions.CloudFront.Signers" Version="4.0.0.28" />
     <PackageReference Include="MailKit" Version="2.8.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.14" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.14" />
