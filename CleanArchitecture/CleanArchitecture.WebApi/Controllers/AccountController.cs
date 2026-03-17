@@ -49,11 +49,15 @@ namespace CleanArchitecture.WebApi.Controllers
 
         [HttpGet("me")]
         [Microsoft.AspNetCore.Authorization.Authorize]
-        public IActionResult GetCurrentUser()
+        public async Task<IActionResult> GetCurrentUser()
         {
             var userId = User.Claims.FirstOrDefault(c => c.Type == "uid")?.Value;
             var num = User.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
-            return Ok(new { UserId = userId ?? num });
+            var uid = userId ?? num;
+            if (string.IsNullOrEmpty(uid)) return Unauthorized();
+
+            var profile = await _accountService.GetUserProfileAsync(uid);
+            return Ok(profile);
         }
         private string GenerateIPAddress()
         {

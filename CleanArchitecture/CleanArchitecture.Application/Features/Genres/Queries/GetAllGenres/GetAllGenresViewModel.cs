@@ -1,7 +1,7 @@
 ﻿
-namespace CleanArchitecture.Core.Features.Categories.Queries.GetAllCategories
+namespace CleanArchitecture.Core.Features.Genres.Queries.GetAllGenres
 {
-    public class GetAllCategoriesViewModel
+    public class GetAllGenresViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }

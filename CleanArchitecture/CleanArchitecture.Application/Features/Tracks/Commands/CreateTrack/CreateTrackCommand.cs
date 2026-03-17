@@ -13,7 +13,7 @@ namespace CleanArchitecture.Core.Features.Tracks.Commands.CreateTrack
         public string Title { get; set; }
         public string ArtistId { get; set; }
         public string FileUrl { get; set; }
-        public int DurationSeconds { get; set; }
+        public int? GenreId { get; set; }
         public bool IsAiGenerated { get; set; }
         public DateTime ReleaseDate { get; set; }
         public byte AudioFormatId { get; set; }

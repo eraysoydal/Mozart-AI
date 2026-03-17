@@ -9,6 +9,8 @@ namespace CleanArchitecture.Core.Entities
         public string Email { get; set; }
         public string PasswordHash { get; set; }
         public DateTime CreatedAt { get; set; }
+        public string ProfilePhotoUrl { get; set; }
+        public string BackgroundPhotoUrl { get; set; }
 
         public UserRole RoleId { get; set; }
     }

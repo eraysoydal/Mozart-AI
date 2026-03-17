@@ -249,5 +249,22 @@ namespace CleanArchitecture.Infrastructure.Services
                 throw new ApiException($"Error occured while reseting the password.");
             }
         }
+
+        public async Task<UserProfileResponse> GetUserProfileAsync(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null) throw new ApiException($"User not found.");
+
+            return new UserProfileResponse
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                ProfilePhotoUrl = user.ProfilePhotoUrl,
+                BackgroundPhotoUrl = user.BackgroundPhotoUrl
+            };
+        }
     }
 }

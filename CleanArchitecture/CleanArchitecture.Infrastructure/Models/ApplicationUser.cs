@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Core.DTOs.Account;
+using CleanArchitecture.Core.DTOs.Account;
 using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 
@@ -8,6 +8,8 @@ namespace CleanArchitecture.Infrastructure.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string ProfilePhotoUrl { get; set; }
+        public string BackgroundPhotoUrl { get; set; }
         public List<RefreshToken> RefreshTokens { get; set; }
         public bool OwnsToken(string token)
         {

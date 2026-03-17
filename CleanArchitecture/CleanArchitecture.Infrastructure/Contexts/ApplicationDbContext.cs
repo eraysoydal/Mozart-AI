@@ -22,10 +22,10 @@ namespace CleanArchitecture.Infrastructure.Contexts
             _authenticatedUser = authenticatedUser;
         }
 
-        public DbSet<Category> Categories { get; set; }
+        public DbSet<Genre> Genres { get; set; }
         public DbSet<Product> Products { get; set; }
 
-        public DbSet<User> Users { get; set; }
+        public new DbSet<User> Users { get; set; }
         public DbSet<Playlist> Playlists { get; set; }
         public DbSet<ArtistApplication> ArtistApplications { get; set; }
         public DbSet<ArtistApplicationCycle2> ArtistApplicationCycle2s { get; set; }

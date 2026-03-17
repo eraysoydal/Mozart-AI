@@ -12,7 +12,8 @@ namespace CleanArchitecture.Core.Entities
         public User Artist { get; set; }
 
         public string FileUrl { get; set; }
-        public int DurationSeconds { get; set; }
+        public int? GenreId { get; set; }
+        public Genre Genre { get; set; }
         public bool IsAiGenerated { get; set; }
 
         public Guid? RefTrackId { get; set; }

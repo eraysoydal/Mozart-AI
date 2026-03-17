@@ -14,7 +14,8 @@ namespace CleanArchitecture.Infrastructure.Contexts.Configurations
             builder.Property(x => x.Title).HasColumnName("title").IsRequired().HasMaxLength(255);
             builder.Property(x => x.ArtistId).HasColumnName("artist_id").IsRequired();
             builder.Property(x => x.FileUrl).HasColumnName("file_url").IsRequired();
-            builder.Property(x => x.DurationSeconds).HasColumnName("duration_seconds").IsRequired();
+            builder.Property(x => x.GenreId).HasColumnName("genre_id");
+            builder.HasOne(x => x.Genre).WithMany().HasForeignKey(x => x.GenreId).OnDelete(DeleteBehavior.SetNull);
             builder.Property(x => x.IsAiGenerated).HasColumnName("is_ai_generated").HasDefaultValue(false);
             builder.Property(x => x.RefTrackId).HasColumnName("ref_track_id");
             builder.Property(x => x.ReleaseDate).HasColumnName("release_date").HasColumnType("DATETIME2").HasDefaultValueSql("SYSUTCDATETIME()");
@@ -55,7 +56,8 @@ namespace CleanArchitecture.Infrastructure.Contexts.Configurations
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).HasDefaultValueSql("NEWID()");
             builder.Property(x => x.TrackId).HasColumnName("track_id").IsRequired();
-            builder.Property(x => x.GenreTag).HasColumnName("genre_tag").HasMaxLength(255);
+            builder.Property(x => x.GenreId).HasColumnName("genre_id");
+            builder.HasOne(x => x.Genre).WithMany().HasForeignKey(x => x.GenreId).OnDelete(DeleteBehavior.SetNull);
             builder.Property(x => x.MoodTag).HasColumnName("mood_tag").HasMaxLength(255);
             builder.Property(x => x.InstrumentTags).HasColumnName("instrument_tags");
             builder.Property(x => x.RawPromptText).HasColumnName("raw_prompt_text");

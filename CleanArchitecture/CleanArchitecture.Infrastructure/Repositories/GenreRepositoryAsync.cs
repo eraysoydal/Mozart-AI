@@ -11,14 +11,14 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Infrastructure.Repositories
 {
-    public class CategoryRepositoryAsync : GenericRepositoryAsync<Category>, ICategoryRepositoryAsync
+    public class GenreRepositoryAsync : GenericRepositoryAsync<Genre>, IGenreRepositoryAsync
     {
 
-        private readonly DbSet<Category> _categories;
+        private readonly DbSet<Genre> _categories;
 
-        public CategoryRepositoryAsync(ApplicationDbContext dbContext) : base(dbContext)
+        public GenreRepositoryAsync(ApplicationDbContext dbContext) : base(dbContext)
         {
-            _categories = dbContext.Set<Category>();
+            _categories = dbContext.Set<Genre>();
         }
     }
 }
