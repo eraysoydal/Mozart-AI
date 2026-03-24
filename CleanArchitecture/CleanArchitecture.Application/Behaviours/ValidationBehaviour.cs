@@ -32,3 +32,4 @@ namespace CleanArchitecture.Core.Behaviours
         }
     }
 }
+//Azure migration
