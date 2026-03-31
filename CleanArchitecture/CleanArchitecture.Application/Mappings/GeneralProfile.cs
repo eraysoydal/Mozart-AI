@@ -5,6 +5,8 @@ using CleanArchitecture.Core.Features.Products.Commands.CreateProduct;
 using CleanArchitecture.Core.Features.Products.Queries.GetAllProducts;
 using CleanArchitecture.Core.Features.Tracks.Queries.GetAllTracks;
 using CleanArchitecture.Core.Features.Tracks.Commands.CreateTrack;
+using CleanArchitecture.Core.Features.Tracks.Commands.UpdateTrack;
+using CleanArchitecture.Core.Features.Tracks.Queries.GetTrackById;
 
 namespace CleanArchitecture.Core.Mappings
 {
@@ -23,6 +25,11 @@ namespace CleanArchitecture.Core.Mappings
                 .ReverseMap();
             CreateMap<GetAllTracksQuery, GetAllTracksParameter>();
             CreateMap<CreateTrackCommand, Track>();
+            CreateMap<UpdateTrackCommand, Track>();
+            CreateMap<Track, GetTrackByIdViewModel>()
+                .ForMember(dest => dest.AudioFormat, opt => opt.MapFrom(src => src.AudioFormatId.ToString()))
+                .ForMember(dest => dest.GenreName, opt => opt.MapFrom(src => src.Genre != null ? src.Genre.Name : null))
+                .ReverseMap();
         }
     }
 }

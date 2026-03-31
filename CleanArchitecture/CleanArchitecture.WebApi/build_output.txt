@@ -1,0 +1,23 @@
+  Geri yüklenecek projeler belirleniyor...
+C:\3\soft\Mozart AI\CleanArchitecture\CleanArchitecture.Infrastructure\CleanArchitecture.Infrastructure.csproj : warning NU1902: 'MimeKit' 2.9.1 paketinde önem derecesi orta olan bilinen bir https://github.com/advisories/GHSA-g7hc-96xr-gvvx güvenlik açığı var [C:\3\soft\Mozart AI\CleanArchitecture\CleanArchitecture.WebApi\CleanArchitecture.WebApi.csproj]
+C:\3\soft\Mozart AI\CleanArchitecture\CleanArchitecture.Application\CleanArchitecture.Core.csproj : warning NU1903: 'AutoMapper' 14.0.0 paketinde önem derecesi yüksek olan bilinen bir https://github.com/advisories/GHSA-rvv3-g6hj-g44x güvenlik açığı var [C:\3\soft\Mozart AI\CleanArchitecture\CleanArchitecture.WebApi\CleanArchitecture.WebApi.csproj]
+  Geri yükleme için tüm projeler güncel.
+C:\3\soft\Mozart AI\CleanArchitecture\CleanArchitecture.Application\CleanArchitecture.Core.csproj : warning NU1903: 'AutoMapper' 14.0.0 paketinde önem derecesi yüksek olan bilinen bir https://github.com/advisories/GHSA-rvv3-g6hj-g44x güvenlik açığı var
+C:\3\soft\Mozart AI\CleanArchitecture\CleanArchitecture.Infrastructure\CleanArchitecture.Infrastructure.csproj : warning NU1902: 'MimeKit' 2.9.1 paketinde önem derecesi orta olan bilinen bir https://github.com/advisories/GHSA-g7hc-96xr-gvvx güvenlik açığı var
+C:\3\soft\Mozart AI\CleanArchitecture\CleanArchitecture.Application\Features\Tracks\Commands\DeleteTrack\DeleteTrackCommand.cs(29,65): error CS1503: 1 bağımsız değişkeni: 'System.Guid' öğesinden 'int' öğesine dönüştürülemiyor [C:\3\soft\Mozart AI\CleanArchitecture\CleanArchitecture.Application\CleanArchitecture.Core.csproj]
+C:\3\soft\Mozart AI\CleanArchitecture\CleanArchitecture.Application\Features\Tracks\Queries\GetTrackById\GetTrackByIdQuery.cs(32,65): error CS1503: 1 bağımsız değişkeni: 'System.Guid' öğesinden 'int' öğesine dönüştürülemiyor [C:\3\soft\Mozart AI\CleanArchitecture\CleanArchitecture.Application\CleanArchitecture.Core.csproj]
+C:\3\soft\Mozart AI\CleanArchitecture\CleanArchitecture.Application\Features\Tracks\Commands\UpdateTrack\UpdateTrackCommand.cs(37,65): error CS1503: 1 bağımsız değişkeni: 'System.Guid' öğesinden 'int' öğesine dönüştürülemiyor [C:\3\soft\Mozart AI\CleanArchitecture\CleanArchitecture.Application\CleanArchitecture.Core.csproj]
+
+Oluşturma BAŞARISIZ OLDU.
+
+C:\3\soft\Mozart AI\CleanArchitecture\CleanArchitecture.Infrastructure\CleanArchitecture.Infrastructure.csproj : warning NU1902: 'MimeKit' 2.9.1 paketinde önem derecesi orta olan bilinen bir https://github.com/advisories/GHSA-g7hc-96xr-gvvx güvenlik açığı var [C:\3\soft\Mozart AI\CleanArchitecture\CleanArchitecture.WebApi\CleanArchitecture.WebApi.csproj]
+C:\3\soft\Mozart AI\CleanArchitecture\CleanArchitecture.Application\CleanArchitecture.Core.csproj : warning NU1903: 'AutoMapper' 14.0.0 paketinde önem derecesi yüksek olan bilinen bir https://github.com/advisories/GHSA-rvv3-g6hj-g44x güvenlik açığı var [C:\3\soft\Mozart AI\CleanArchitecture\CleanArchitecture.WebApi\CleanArchitecture.WebApi.csproj]
+C:\3\soft\Mozart AI\CleanArchitecture\CleanArchitecture.Application\CleanArchitecture.Core.csproj : warning NU1903: 'AutoMapper' 14.0.0 paketinde önem derecesi yüksek olan bilinen bir https://github.com/advisories/GHSA-rvv3-g6hj-g44x güvenlik açığı var
+C:\3\soft\Mozart AI\CleanArchitecture\CleanArchitecture.Infrastructure\CleanArchitecture.Infrastructure.csproj : warning NU1902: 'MimeKit' 2.9.1 paketinde önem derecesi orta olan bilinen bir https://github.com/advisories/GHSA-g7hc-96xr-gvvx güvenlik açığı var
+C:\3\soft\Mozart AI\CleanArchitecture\CleanArchitecture.Application\Features\Tracks\Commands\DeleteTrack\DeleteTrackCommand.cs(29,65): error CS1503: 1 bağımsız değişkeni: 'System.Guid' öğesinden 'int' öğesine dönüştürülemiyor [C:\3\soft\Mozart AI\CleanArchitecture\CleanArchitecture.Application\CleanArchitecture.Core.csproj]
+C:\3\soft\Mozart AI\CleanArchitecture\CleanArchitecture.Application\Features\Tracks\Queries\GetTrackById\GetTrackByIdQuery.cs(32,65): error CS1503: 1 bağımsız değişkeni: 'System.Guid' öğesinden 'int' öğesine dönüştürülemiyor [C:\3\soft\Mozart AI\CleanArchitecture\CleanArchitecture.Application\CleanArchitecture.Core.csproj]
+C:\3\soft\Mozart AI\CleanArchitecture\CleanArchitecture.Application\Features\Tracks\Commands\UpdateTrack\UpdateTrackCommand.cs(37,65): error CS1503: 1 bağımsız değişkeni: 'System.Guid' öğesinden 'int' öğesine dönüştürülemiyor [C:\3\soft\Mozart AI\CleanArchitecture\CleanArchitecture.Application\CleanArchitecture.Core.csproj]
+    4 Uyarı
+    3 Hata
+
+Geçen Süre 00:00:00.78

@@ -14,5 +14,20 @@
             Create a new music track.
             </summary>
         </member>
+        <member name="M:CleanArchitecture.WebApi.Controllers.v1.TrackController.Get(System.Guid)">
+            <summary>
+            Get a music track by id. Requires authentication.
+            </summary>
+        </member>
+        <member name="M:CleanArchitecture.WebApi.Controllers.v1.TrackController.Put(System.Guid,CleanArchitecture.Core.Features.Tracks.Commands.UpdateTrack.UpdateTrackCommand)">
+            <summary>
+            Update a music track.
+            </summary>
+        </member>
+        <member name="M:CleanArchitecture.WebApi.Controllers.v1.TrackController.Delete(System.Guid)">
+            <summary>
+            Delete a music track.
+            </summary>
+        </member>
     </members>
 </doc>

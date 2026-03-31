@@ -3,6 +3,7 @@ using CleanArchitecture.Core.Interfaces.Repositories;
 using CleanArchitecture.Infrastructure.Contexts;
 using CleanArchitecture.Infrastructure.Repository;
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,6 +28,13 @@ namespace CleanArchitecture.Infrastructure.Repositories
                 .Take(pageSize)
                 .AsNoTracking()
                 .ToListAsync();
+        }
+
+        public async Task<Track> GetByIdAsync(Guid id)
+        {
+            return await _tracks
+                .Include(t => t.Genre)
+                .FirstOrDefaultAsync(t => t.Id == id);
         }
     }
 }

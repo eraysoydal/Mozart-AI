@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using System;
 
 using CleanArchitecture.Core.Features.Tracks.Commands.CreateTrack;
+using CleanArchitecture.Core.Features.Tracks.Commands.UpdateTrack;
+using CleanArchitecture.Core.Features.Tracks.Commands.DeleteTrack;
+using CleanArchitecture.Core.Features.Tracks.Queries.GetTrackById;
 
 namespace CleanArchitecture.WebApi.Controllers.v1
 {
@@ -37,6 +40,40 @@ namespace CleanArchitecture.WebApi.Controllers.v1
         public async Task<IActionResult> Post(CreateTrackCommand command)
         {
             return Ok(await Mediator.Send(command));
+        }
+
+        /// <summary>
+        /// Get a music track by id. Requires authentication.
+        /// </summary>
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetTrackByIdViewModel))]
+        public async Task<IActionResult> Get(Guid id)
+        {
+            return Ok(await Mediator.Send(new GetTrackByIdQuery { Id = id }));
+        }
+
+        /// <summary>
+        /// Update a music track.
+        /// </summary>
+        [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Guid))]
+        public async Task<IActionResult> Put(Guid id, UpdateTrackCommand command)
+        {
+            if (id != command.Id)
+            {
+                return BadRequest();
+            }
+            return Ok(await Mediator.Send(command));
+        }
+
+        /// <summary>
+        /// Delete a music track.
+        /// </summary>
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Guid))]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            return Ok(await Mediator.Send(new DeleteTrackCommand { Id = id }));
         }
     }
 }
