@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Core.Exceptions;
+using CleanArchitecture.Core.Exceptions;
 using CleanArchitecture.Core.Wrappers;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -51,6 +51,7 @@ namespace CleanArchitecture.WebApi.Middlewares
                     default:
                         // unhandled error
                         response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                        errorResponse.Message = error.Message + (error.InnerException != null ? " - " + error.InnerException.Message : "");
                         break;
                 }
                 var result = JsonSerializer.Serialize(errorResponse);
