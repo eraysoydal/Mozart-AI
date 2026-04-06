@@ -104,6 +104,7 @@ namespace CleanArchitecture.Infrastructure
             services.AddTransient<IProductRepositoryAsync, ProductRepositoryAsync>();
             services.AddTransient<IGenreRepositoryAsync, GenreRepositoryAsync>();
             services.AddTransient<ITrackRepositoryAsync, TrackRepositoryAsync>();
+            services.AddTransient<IUserRepositoryAsync, UserRepositoryAsync>();
             #endregion
 
             services.Configure<CloudFrontSettings>(configuration.GetSection("CloudFrontSettings"));
