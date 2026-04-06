@@ -23,7 +23,6 @@ namespace CleanArchitecture.Infrastructure.Contexts
         }
 
         public DbSet<Genre> Genres { get; set; }
-        public DbSet<Product> Products { get; set; }
 
         public new DbSet<User> Users { get; set; }
         public DbSet<Playlist> Playlists { get; set; }

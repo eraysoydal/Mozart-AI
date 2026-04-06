@@ -255,6 +255,9 @@ namespace CleanArchitecture.Infrastructure.Services
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null) throw new ApiException($"User not found.");
 
+            var roles = await _userManager.GetRolesAsync(user);
+            var dbUser = await _dbContext.Users.FindAsync(userId);
+
             return new UserProfileResponse
             {
                 Id = user.Id,
@@ -263,7 +266,9 @@ namespace CleanArchitecture.Infrastructure.Services
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 ProfilePhotoUrl = user.ProfilePhotoUrl,
-                BackgroundPhotoUrl = user.BackgroundPhotoUrl
+                BackgroundPhotoUrl = user.BackgroundPhotoUrl,
+                Roles = roles,
+                Role = dbUser?.RoleId ?? CleanArchitecture.Core.Enums.UserRole.Listener
             };
         }
     }

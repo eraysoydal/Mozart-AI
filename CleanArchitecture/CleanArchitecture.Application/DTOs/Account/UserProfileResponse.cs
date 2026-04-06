@@ -11,5 +11,7 @@ namespace CleanArchitecture.Core.DTOs.Account
         public string LastName { get; set; }
         public string ProfilePhotoUrl { get; set; }
         public string BackgroundPhotoUrl { get; set; }
+        public System.Collections.Generic.IList<string> Roles { get; set; }
+        public CleanArchitecture.Core.Enums.UserRole Role { get; set; }
     }
 }

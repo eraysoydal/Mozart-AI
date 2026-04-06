@@ -1,8 +1,6 @@
 using AutoMapper;
 using CleanArchitecture.Core.Entities;
 using CleanArchitecture.Core.Features.Genres.Queries.GetAllGenres;
-using CleanArchitecture.Core.Features.Products.Commands.CreateProduct;
-using CleanArchitecture.Core.Features.Products.Queries.GetAllProducts;
 using CleanArchitecture.Core.Features.Tracks.Queries.GetAllTracks;
 using CleanArchitecture.Core.Features.Tracks.Commands.CreateTrack;
 using CleanArchitecture.Core.Features.Tracks.Commands.UpdateTrack;
@@ -16,9 +14,6 @@ namespace CleanArchitecture.Core.Mappings
     {
         public GeneralProfile()
         {
-            CreateMap<Product, GetAllProductsViewModel>().ReverseMap();
-            CreateMap<CreateProductCommand, Product>();
-            CreateMap<GetAllProductsQuery, GetAllProductsParameter>();
             CreateMap<GetAllGenresQuery, GetAllGenresParameter>();
             CreateMap<Genre, GetAllGenresViewModel>().ReverseMap();
             CreateMap<Track, GetAllTracksViewModel>()
