@@ -20,7 +20,9 @@ namespace CleanArchitecture.Infrastructure.Contexts.Configurations
             builder.Property(x => x.RefTrackId).HasColumnName("ref_track_id");
             builder.Property(x => x.ReleaseDate).HasColumnName("release_date").HasColumnType("DATETIME2").HasDefaultValueSql("SYSUTCDATETIME()");
             builder.Property(x => x.CanvasUrl).HasColumnName("canvas_url");
+            builder.Property(x => x.CoverImageUrl).HasColumnName("cover_image_url").HasMaxLength(500);
             builder.Property(x => x.LyricSyncUrl).HasColumnName("lyric_sync_url");
+            builder.Property(x => x.Lyrics).HasColumnName("lyrics");
             builder.Property(x => x.AudioFormatId).HasColumnName("audio_format_id").HasConversion<byte>();
             builder.Property(x => x.PLine).HasColumnName("p_line").HasMaxLength(255);
             builder.Property(x => x.AiPermission).HasColumnName("ai_permission");

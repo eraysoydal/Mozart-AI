@@ -21,7 +21,9 @@ namespace CleanArchitecture.Core.Entities
 
         public DateTime ReleaseDate { get; set; }
         public string CanvasUrl { get; set; }
+        public string CoverImageUrl { get; set; }
         public string LyricSyncUrl { get; set; }
+        public string Lyrics { get; set; }
         
         public AudioFormat AudioFormatId { get; set; }
         

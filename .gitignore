@@ -33,3 +33,4 @@ appsettings.Development.json
 TmpAwsFind/
 Mozart*.json
 response.json
+feature_comparison.md

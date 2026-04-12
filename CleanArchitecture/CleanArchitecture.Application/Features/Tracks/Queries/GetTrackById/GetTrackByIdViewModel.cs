@@ -14,7 +14,9 @@ namespace CleanArchitecture.Core.Features.Tracks.Queries.GetTrackById
         public string AudioFormat { get; set; }
         public string FileUrl { get; set; }
         public string CanvasUrl { get; set; }
+        public string CoverImageUrl { get; set; }
         public string LyricSyncUrl { get; set; }
+        public string Lyrics { get; set; }
         public string PLine { get; set; }
         public int AiPermission { get; set; }
         public bool AllowSystemAnalysis { get; set; }

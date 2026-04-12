@@ -406,43 +406,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.ToTable("PlaylistTracks", (string)null);
                 });
 
-            modelBuilder.Entity("CleanArchitecture.Core.Entities.Product", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Barcode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("LastModified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Rate")
-                        .HasColumnType("decimal(18,6)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Products");
-                });
-
             modelBuilder.Entity("CleanArchitecture.Core.Entities.Share", b =>
                 {
                     b.Property<string>("UserId")
@@ -500,6 +463,11 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("canvas_url");
 
+                    b.Property<string>("CoverImageUrl")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)")
+                        .HasColumnName("cover_image_url");
+
                     b.Property<string>("FileUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
@@ -518,6 +486,10 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<string>("LyricSyncUrl")
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("lyric_sync_url");
+
+                    b.Property<string>("Lyrics")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("lyrics");
 
                     b.Property<string>("PLine")
                         .HasMaxLength(255)
@@ -623,6 +595,11 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<string>("BackgroundPhotoUrl")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Bio")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)")
+                        .HasColumnName("bio");
+
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("DATETIME2")
@@ -634,6 +611,11 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)")
                         .HasColumnName("email");
+
+                    b.Property<string>("Location")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)")
+                        .HasColumnName("location");
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
@@ -653,6 +635,11 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)")
                         .HasColumnName("username");
+
+                    b.Property<string>("Website")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)")
+                        .HasColumnName("website");
 
                     b.HasKey("Id");
 

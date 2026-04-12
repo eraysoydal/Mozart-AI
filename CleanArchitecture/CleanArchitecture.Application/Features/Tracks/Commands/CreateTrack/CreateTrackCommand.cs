@@ -19,6 +19,9 @@ namespace CleanArchitecture.Core.Features.Tracks.Commands.CreateTrack
         public byte AudioFormatId { get; set; }
         public int AiPermission { get; set; }
         public bool AllowSystemAnalysis { get; set; }
+        public string CanvasUrl { get; set; }
+        public string CoverImageUrl { get; set; }
+        public string Lyrics { get; set; }
     }
 
     public class CreateTrackCommandHandler : IRequestHandler<CreateTrackCommand, Guid>

@@ -17,6 +17,9 @@ namespace CleanArchitecture.Infrastructure.Contexts.Configurations
             builder.HasIndex(x => x.Email).IsUnique();
             builder.Property(x => x.PasswordHash).HasColumnName("password_hash").IsRequired().HasMaxLength(255);
             builder.Property(x => x.CreatedAt).HasColumnName("created_at").HasColumnType("DATETIME2").HasDefaultValueSql("SYSUTCDATETIME()");
+            builder.Property(x => x.Bio).HasColumnName("bio").HasMaxLength(1000);
+            builder.Property(x => x.Location).HasColumnName("location").HasMaxLength(255);
+            builder.Property(x => x.Website).HasColumnName("website").HasMaxLength(500);
             builder.Property(x => x.RoleId).HasColumnName("role_id").HasConversion<byte>();
         }
     }

@@ -14,5 +14,6 @@ namespace CleanArchitecture.Core.Features.Tracks.Queries.GetAllTracks
         public string AudioFormat { get; set; }
         public string FileUrl { get; set; }
         public string CanvasUrl { get; set; }
+        public string CoverImageUrl { get; set; }
     }
 }

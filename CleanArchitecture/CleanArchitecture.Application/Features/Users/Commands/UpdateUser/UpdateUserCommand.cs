@@ -15,6 +15,9 @@ namespace CleanArchitecture.Core.Features.Users.Commands.UpdateUser
         public string Email { get; set; }
         public string ProfilePhotoUrl { get; set; }
         public string BackgroundPhotoUrl { get; set; }
+        public string Bio { get; set; }
+        public string Location { get; set; }
+        public string Website { get; set; }
         public UserRole RoleId { get; set; }
     }
 
@@ -41,6 +44,9 @@ namespace CleanArchitecture.Core.Features.Users.Commands.UpdateUser
                 user.Email = command.Email;
                 user.ProfilePhotoUrl = command.ProfilePhotoUrl;
                 user.BackgroundPhotoUrl = command.BackgroundPhotoUrl;
+                user.Bio = command.Bio;
+                user.Location = command.Location;
+                user.Website = command.Website;
                 user.RoleId = command.RoleId;
 
                 await _userRepository.UpdateAsync(user);

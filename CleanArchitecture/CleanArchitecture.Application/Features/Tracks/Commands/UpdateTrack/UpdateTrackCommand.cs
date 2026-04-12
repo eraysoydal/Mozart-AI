@@ -19,6 +19,8 @@ namespace CleanArchitecture.Core.Features.Tracks.Commands.UpdateTrack
         public int AiPermission { get; set; }
         public bool AllowSystemAnalysis { get; set; }
         public string CanvasUrl { get; set; }
+        public string CoverImageUrl { get; set; }
+        public string Lyrics { get; set; }
         public bool IsAiGenerated { get; set; }
         
         public class UpdateTrackCommandHandler : IRequestHandler<UpdateTrackCommand, Guid>
@@ -48,6 +50,8 @@ namespace CleanArchitecture.Core.Features.Tracks.Commands.UpdateTrack
                 track.AiPermission = command.AiPermission;
                 track.AllowSystemAnalysis = command.AllowSystemAnalysis;
                 track.CanvasUrl = command.CanvasUrl;
+                track.CoverImageUrl = command.CoverImageUrl;
+                track.Lyrics = command.Lyrics;
                 track.IsAiGenerated = command.IsAiGenerated;
 
                 await _trackRepository.UpdateAsync(track);
