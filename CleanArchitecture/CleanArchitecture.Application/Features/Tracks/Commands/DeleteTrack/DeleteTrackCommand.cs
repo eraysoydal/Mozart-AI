@@ -30,7 +30,7 @@ namespace CleanArchitecture.Core.Features.Tracks.Commands.DeleteTrack
                 if (track == null)
                     throw new EntityNotFoundException("Track", command.Id);
 
-                if (track.ArtistId != _authenticatedUserService.UserId)
+                if (track.ArtistId != _authenticatedUserService.UserId && !_authenticatedUserService.IsAdmin)
                     throw new ApiException("You are not authorized to delete this track.");
 
                 await _trackRepository.DeleteAsync(track);
