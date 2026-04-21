@@ -1,15 +1,14 @@
+using System;
+using System.Threading.Tasks;
+using CleanArchitecture.Core.Features.Tracks.Commands.CreateTrack;
+using CleanArchitecture.Core.Features.Tracks.Commands.DeleteTrack;
+using CleanArchitecture.Core.Features.Tracks.Commands.UpdateTrack;
 using CleanArchitecture.Core.Features.Tracks.Queries.GetAllTracks;
+using CleanArchitecture.Core.Features.Tracks.Queries.GetTrackById;
 using CleanArchitecture.Core.Wrappers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-using System;
-
-using CleanArchitecture.Core.Features.Tracks.Commands.CreateTrack;
-using CleanArchitecture.Core.Features.Tracks.Commands.UpdateTrack;
-using CleanArchitecture.Core.Features.Tracks.Commands.DeleteTrack;
-using CleanArchitecture.Core.Features.Tracks.Queries.GetTrackById;
 
 namespace CleanArchitecture.WebApi.Controllers.v1
 {
@@ -57,6 +56,7 @@ namespace CleanArchitecture.WebApi.Controllers.v1
         /// </summary>
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Guid))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Put(Guid id, UpdateTrackCommand command)
         {
             if (id != command.Id)

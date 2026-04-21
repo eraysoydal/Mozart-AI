@@ -26,11 +26,11 @@ namespace CleanArchitecture.Core.Features.Comments.Commands.DeleteComment
         {
             var comment = await _commentRepository.GetByIdAsync(request.Id);
             if (comment == null)
-                throw new ApiException($"Comment Not Found.");
+                throw new ApiException("Comment Not Found.");
 
             // Basic authorization check: Only the author can delete their comment
             if (comment.UserId != request.UserId)
-                throw new ApiException($"You are not authorized to delete this comment.");
+                throw new ApiException("You are not authorized to delete this comment.");
 
             await _commentRepository.DeleteAsync(comment);
             return comment.Id;

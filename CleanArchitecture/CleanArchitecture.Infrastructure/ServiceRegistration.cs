@@ -14,7 +14,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
 using System;
 using System.Text;
 
@@ -36,8 +35,6 @@ namespace CleanArchitecture.Infrastructure
                    configuration.GetConnectionString("DefaultConnection"),
                    b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
             }
-
-
 
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
             #region Services
@@ -90,9 +87,6 @@ namespace CleanArchitecture.Infrastructure
                         },
                     };
                 });
-
-
-
 
             services.Configure<MailSettings>(configuration.GetSection("MailSettings"));
             services.AddTransient<IDateTimeService, DateTimeService>();
