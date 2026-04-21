@@ -59,6 +59,33 @@ namespace CleanArchitecture.WebApi.Controllers
             var profile = await _accountService.GetUserProfileAsync(uid);
             return Ok(profile);
         }
+
+        /// <summary>
+        /// Gets a user's public profile by their ID. Used for resolving artistId → display name.
+        /// </summary>
+        [HttpGet("profile/{userId}")]
+        [Microsoft.AspNetCore.Authorization.AllowAnonymous]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserProfileResponse))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetUserProfile(string userId)
+        {
+            if (string.IsNullOrWhiteSpace(userId)) return BadRequest("userId is required.");
+            var profile = await _accountService.GetUserProfileAsync(userId);
+            if (profile == null) return NotFound();
+            return Ok(profile);
+        }
+
+        [HttpPut("profile")]
+        [Microsoft.AspNetCore.Authorization.Authorize]
+        public async Task<IActionResult> UpdateProfile(UpdateUserProfileRequest request)
+        {
+            var userId = User.Claims.FirstOrDefault(c => c.Type == "uid")?.Value;
+            var num = User.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            var uid = userId ?? num;
+            if (string.IsNullOrEmpty(uid)) return Unauthorized();
+
+            return Ok(await _accountService.UpdateUserProfileAsync(uid, request));
+        }
         private string GenerateIPAddress()
         {
             if (Request.Headers.ContainsKey("X-Forwarded-For"))

@@ -13,5 +13,6 @@ namespace CleanArchitecture.Core.Interfaces
         Task<EmailRequest> ForgotPassword(ForgotPasswordRequest model, string origin);
         Task<string> ResetPassword(ResetPasswordRequest model);
         Task<UserProfileResponse> GetUserProfileAsync(string userId);
+        Task<Response<string>> UpdateUserProfileAsync(string userId, UpdateUserProfileRequest request);
     }
 }

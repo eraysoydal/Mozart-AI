@@ -40,7 +40,7 @@ namespace CleanArchitecture.Core.Features.Tracks.Commands.UpdateTrack
                 if (track == null)
                     throw new EntityNotFoundException("Track", command.Id);
 
-                if (track.ArtistId != _authenticatedUserService.UserId)
+                if (track.ArtistId != _authenticatedUserService.UserId && !_authenticatedUserService.IsAdmin)
                     throw new ApiException("You are not authorized to update this track.");
 
                 track.Title = command.Title;
