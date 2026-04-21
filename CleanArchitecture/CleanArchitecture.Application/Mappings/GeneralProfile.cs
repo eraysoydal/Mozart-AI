@@ -1,12 +1,12 @@
 using AutoMapper;
 using CleanArchitecture.Core.Entities;
 using CleanArchitecture.Core.Features.Genres.Queries.GetAllGenres;
-using CleanArchitecture.Core.Features.Tracks.Queries.GetAllTracks;
 using CleanArchitecture.Core.Features.Tracks.Commands.CreateTrack;
 using CleanArchitecture.Core.Features.Tracks.Commands.UpdateTrack;
+using CleanArchitecture.Core.Features.Tracks.Queries.GetAllTracks;
 using CleanArchitecture.Core.Features.Tracks.Queries.GetTrackById;
-using CleanArchitecture.Core.Features.Users.Queries.GetAllUsers;
 using CleanArchitecture.Core.Features.Users.Queries.GetAllArtists;
+using CleanArchitecture.Core.Features.Users.Queries.GetAllUsers;
 
 namespace CleanArchitecture.Core.Mappings
 {
