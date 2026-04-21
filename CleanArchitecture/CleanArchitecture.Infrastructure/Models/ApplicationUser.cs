@@ -10,6 +10,7 @@ namespace CleanArchitecture.Infrastructure.Models
         public string LastName { get; set; }
         public string ProfilePhotoUrl { get; set; }
         public string BackgroundPhotoUrl { get; set; }
+        public string Biography { get; set; }
         public List<RefreshToken> RefreshTokens { get; set; }
         public bool OwnsToken(string token)
         {

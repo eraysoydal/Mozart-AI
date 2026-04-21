@@ -74,6 +74,18 @@ namespace CleanArchitecture.WebApi.Controllers
             if (profile == null) return NotFound();
             return Ok(profile);
         }
+
+        [HttpPut("profile")]
+        [Microsoft.AspNetCore.Authorization.Authorize]
+        public async Task<IActionResult> UpdateProfile(UpdateUserProfileRequest request)
+        {
+            var userId = User.Claims.FirstOrDefault(c => c.Type == "uid")?.Value;
+            var num = User.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            var uid = userId ?? num;
+            if (string.IsNullOrEmpty(uid)) return Unauthorized();
+
+            return Ok(await _accountService.UpdateUserProfileAsync(uid, request));
+        }
         private string GenerateIPAddress()
         {
             if (Request.Headers.ContainsKey("X-Forwarded-For"))

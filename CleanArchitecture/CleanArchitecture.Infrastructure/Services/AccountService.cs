@@ -267,9 +267,34 @@ namespace CleanArchitecture.Infrastructure.Services
                 LastName = user.LastName,
                 ProfilePhotoUrl = user.ProfilePhotoUrl,
                 BackgroundPhotoUrl = user.BackgroundPhotoUrl,
+                Biography = user.Biography,
                 Roles = roles,
                 Role = dbUser?.RoleId ?? CleanArchitecture.Core.Enums.UserRole.Listener
             };
+        }
+
+        public async Task<Response<string>> UpdateUserProfileAsync(string userId, UpdateUserProfileRequest request)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null) throw new ApiException($"User not found.");
+
+            user.FirstName = request.FirstName;
+            user.LastName = request.LastName;
+            user.Biography = request.Biography;
+            if (!string.IsNullOrEmpty(request.ProfilePhotoUrl))
+                user.ProfilePhotoUrl = request.ProfilePhotoUrl;
+            if (!string.IsNullOrEmpty(request.BackgroundPhotoUrl))
+                user.BackgroundPhotoUrl = request.BackgroundPhotoUrl;
+
+            var result = await _userManager.UpdateAsync(user);
+            if (result.Succeeded)
+            {
+                return new Response<string>(user.Id, "Profile Updated Successfully");
+            }
+            else
+            {
+                throw new ApiException(string.Join(", ", result.Errors.Select(x => x.Description)));
+            }
         }
     }
 }
