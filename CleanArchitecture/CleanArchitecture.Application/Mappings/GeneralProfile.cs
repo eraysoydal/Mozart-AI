@@ -18,14 +18,14 @@ namespace CleanArchitecture.Core.Mappings
             CreateMap<Genre, GetAllGenresViewModel>().ReverseMap();
             CreateMap<Track, GetAllTracksViewModel>()
                 .ForMember(dest => dest.AudioFormat, opt => opt.MapFrom(src => src.AudioFormatId.ToString()))
-                .ForMember(dest => dest.GenreName, opt => opt.MapFrom(src => src.Genre?.Name))
+                .ForMember(dest => dest.GenreName, opt => opt.MapFrom(src => src.Genre != null ? src.Genre.Name : null))
                 .ReverseMap();
             CreateMap<GetAllTracksQuery, GetAllTracksParameter>();
             CreateMap<CreateTrackCommand, Track>();
             CreateMap<UpdateTrackCommand, Track>();
             CreateMap<Track, GetTrackByIdViewModel>()
                 .ForMember(dest => dest.AudioFormat, opt => opt.MapFrom(src => src.AudioFormatId.ToString()))
-                .ForMember(dest => dest.GenreName, opt => opt.MapFrom(src => src.Genre?.Name))
+                .ForMember(dest => dest.GenreName, opt => opt.MapFrom(src => src.Genre != null ? src.Genre.Name : null))
                 .ReverseMap();
 
             CreateMap<User, GetAllUsersViewModel>().ReverseMap();
