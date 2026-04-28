@@ -27,7 +27,8 @@ namespace CleanArchitecture.WebApi.Controllers.v1
             return await Mediator.Send(new GetAllTracksQuery
             {
                 PageNumber = filter.PageNumber,
-                PageSize = filter.PageSize
+                PageSize = filter.PageSize,
+                SearchQuery = filter.SearchQuery
             });
         }
 
