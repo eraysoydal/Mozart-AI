@@ -20,9 +20,16 @@ namespace CleanArchitecture.Infrastructure.Repositories
             _tracks = dbContext.Set<Track>();
         }
 
-        public new async Task<IReadOnlyList<Track>> GetPagedReponseAsync(int pageNumber, int pageSize)
+        public async Task<IReadOnlyList<Track>> GetPagedReponseAsync(int pageNumber, int pageSize, string searchQuery = null)
         {
-            return await _tracks
+            var query = _tracks.AsQueryable();
+
+            if (!string.IsNullOrEmpty(searchQuery))
+            {
+                query = query.Where(t => t.Title.Contains(searchQuery));
+            }
+
+            return await query
                 .Include(t => t.Genre)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)

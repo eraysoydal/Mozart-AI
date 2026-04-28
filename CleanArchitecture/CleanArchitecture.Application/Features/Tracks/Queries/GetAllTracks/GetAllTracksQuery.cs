@@ -13,6 +13,7 @@ namespace CleanArchitecture.Core.Features.Tracks.Queries.GetAllTracks
     {
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
+        public string SearchQuery { get; set; }
     }
 
     public class GetAllTracksQueryHandler : IRequestHandler<GetAllTracksQuery, PagedResponse<GetAllTracksViewModel>>
@@ -34,7 +35,7 @@ namespace CleanArchitecture.Core.Features.Tracks.Queries.GetAllTracks
         public async Task<PagedResponse<GetAllTracksViewModel>> Handle(GetAllTracksQuery request, CancellationToken cancellationToken)
         {
             var validFilter = _mapper.Map<GetAllTracksParameter>(request);
-            var tracks = await _trackRepository.GetPagedReponseAsync(validFilter.PageNumber, validFilter.PageSize);
+            var tracks = await _trackRepository.GetPagedReponseAsync(validFilter.PageNumber, validFilter.PageSize, validFilter.SearchQuery);
             var trackViewModels = _mapper.Map<List<GetAllTracksViewModel>>(tracks);
 
             // Replace FileUrl with signed CloudFront URLs

@@ -4,6 +4,11 @@
         <name>CleanArchitecture.WebApi</name>
     </assembly>
     <members>
+        <member name="M:CleanArchitecture.WebApi.Controllers.AccountController.GetUserProfile(System.String)">
+            <summary>
+            Gets a user's public profile by their ID. Used for resolving artistId → display name.
+            </summary>
+        </member>
         <member name="M:CleanArchitecture.WebApi.Controllers.v1.AnalyticsController.RecordStream(CleanArchitecture.Core.Features.Analytics.Commands.RecordStream.RecordStreamCommand)">
             <summary>
             Records a track stream by a user. (Listener ID can be null for anonymous streams).
