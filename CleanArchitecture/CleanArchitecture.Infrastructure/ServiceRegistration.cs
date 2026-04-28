@@ -108,6 +108,9 @@ namespace CleanArchitecture.Infrastructure
 
             services.Configure<CloudFrontSettings>(configuration.GetSection("CloudFrontSettings"));
             services.AddTransient<ICloudFrontService, CloudFrontService>();
+
+            services.Configure<S3Settings>(configuration.GetSection("S3Settings"));
+            services.AddTransient<IS3UploadService, S3UploadService>();
         }
     }
 }

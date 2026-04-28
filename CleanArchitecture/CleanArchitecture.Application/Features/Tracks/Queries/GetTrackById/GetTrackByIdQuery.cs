@@ -37,6 +37,8 @@ namespace CleanArchitecture.Core.Features.Tracks.Queries.GetTrackById
                     viewModel.FileUrl = _cloudFrontService.GetSignedUrl(viewModel.FileUrl);
                 if (!string.IsNullOrEmpty(viewModel.CanvasUrl))
                     viewModel.CanvasUrl = _cloudFrontService.GetSignedUrl(viewModel.CanvasUrl);
+                if (!string.IsNullOrEmpty(viewModel.CoverImageUrl))
+                    viewModel.CoverImageUrl = _cloudFrontService.GetSignedUrl(viewModel.CoverImageUrl);
                 
                 return viewModel;
             }
