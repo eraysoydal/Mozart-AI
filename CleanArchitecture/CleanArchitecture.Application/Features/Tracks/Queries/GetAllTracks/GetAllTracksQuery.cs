@@ -38,11 +38,17 @@ namespace CleanArchitecture.Core.Features.Tracks.Queries.GetAllTracks
             var tracks = await _trackRepository.GetPagedReponseAsync(validFilter.PageNumber, validFilter.PageSize, validFilter.SearchQuery);
             var trackViewModels = _mapper.Map<List<GetAllTracksViewModel>>(tracks);
 
-            // Replace FileUrl with signed CloudFront URLs
+            // Replace URLs with signed CloudFront URLs
             foreach (var vm in trackViewModels)
             {
                 if (!string.IsNullOrEmpty(vm.FileUrl))
                     vm.FileUrl = _cloudFrontService.GetSignedUrl(vm.FileUrl);
+
+                if (!string.IsNullOrEmpty(vm.CanvasUrl))
+                    vm.CanvasUrl = _cloudFrontService.GetSignedUrl(vm.CanvasUrl);
+
+                if (!string.IsNullOrEmpty(vm.CoverImageUrl))
+                    vm.CoverImageUrl = _cloudFrontService.GetSignedUrl(vm.CoverImageUrl);
             }
 
             return new PagedResponse<GetAllTracksViewModel>(trackViewModels, validFilter.PageNumber, validFilter.PageSize);

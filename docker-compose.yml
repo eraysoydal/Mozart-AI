@@ -23,6 +23,8 @@ services:
     environment:
       - UseInMemoryDatabase=false
       - 'ConnectionStrings__DefaultConnection=Server=db;Database=CleanArchitectureDb;User Id=sa;Password=Mozart_AI_2026!;TrustServerCertificate=True'
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
     volumes:
       - ./cloudfront_private.pem:/app/cloudfront_private.pem:ro
 
