@@ -8,7 +8,7 @@ COPY ["CleanArchitecture/", "CleanArchitecture/"]
 # Restore işlemini solution üzerinden veya WebApi üzerinden yap
 RUN dotnet restore "CleanArchitecture/CleanArchitecture.WebApi/CleanArchitecture.WebApi.csproj"
 
-# Geri kalan her şeyi copy et
+# Geri kalan her şeyi kopyala
 COPY . .
 
 WORKDIR "/src/CleanArchitecture/CleanArchitecture.WebApi"
