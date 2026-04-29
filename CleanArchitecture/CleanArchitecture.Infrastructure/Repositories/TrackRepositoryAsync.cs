@@ -20,17 +20,31 @@ namespace CleanArchitecture.Infrastructure.Repositories
             _tracks = dbContext.Set<Track>();
         }
 
-        public async Task<IReadOnlyList<Track>> GetPagedReponseAsync(int pageNumber, int pageSize, string searchQuery = null)
+        public async Task<IReadOnlyList<Track>> GetPagedReponseAsync(
+            int pageNumber,
+            int pageSize,
+            string searchQuery = null,
+            int? genreId = null,
+            string artistName = null,
+            bool? isAiGenerated = null)
         {
             var query = _tracks.AsQueryable();
 
             if (!string.IsNullOrEmpty(searchQuery))
-            {
                 query = query.Where(t => t.Title.Contains(searchQuery));
-            }
+
+            if (genreId.HasValue)
+                query = query.Where(t => t.GenreId == genreId.Value);
+
+            if (!string.IsNullOrEmpty(artistName))
+                query = query.Where(t => t.Artist.Username.Contains(artistName));
+
+            if (isAiGenerated.HasValue)
+                query = query.Where(t => t.IsAiGenerated == isAiGenerated.Value);
 
             return await query
                 .Include(t => t.Genre)
+                .Include(t => t.Artist)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .AsNoTracking()

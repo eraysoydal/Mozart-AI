@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CleanArchitecture.UnitTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+400928b634bd2a8671c1532dc32658605b74e08a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eb60ebef43742762ea2738505ad32115d887afb5")]
 [assembly: System.Reflection.AssemblyProductAttribute("CleanArchitecture.UnitTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CleanArchitecture.UnitTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

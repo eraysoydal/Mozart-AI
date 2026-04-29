@@ -104,10 +104,15 @@ namespace CleanArchitecture.Infrastructure
             services.AddTransient<IFollowerRepositoryAsync, FollowerRepositoryAsync>();
             services.AddTransient<IPlaylistRepositoryAsync, PlaylistRepositoryAsync>();
             services.AddTransient<ITrackStatisticRepositoryAsync, TrackStatisticRepositoryAsync>();
+            services.AddTransient<IArtistApplicationRepositoryAsync, ArtistApplicationRepositoryAsync>();
             #endregion
 
             services.Configure<CloudFrontSettings>(configuration.GetSection("CloudFrontSettings"));
             services.AddTransient<ICloudFrontService, CloudFrontService>();
+
+            services.Configure<S3Settings>(configuration.GetSection("S3Settings"));
+            services.AddTransient<IS3Service, S3Service>();
+            services.AddTransient<IFFmpegService, FFmpegService>();
         }
     }
 }

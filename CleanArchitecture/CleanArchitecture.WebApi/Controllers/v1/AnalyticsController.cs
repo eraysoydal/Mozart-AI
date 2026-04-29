@@ -1,4 +1,5 @@
 using CleanArchitecture.Core.Features.Analytics.Commands.RecordStream;
+using CleanArchitecture.Core.Features.Analytics.Queries.GetDailyStreams;
 using CleanArchitecture.Core.Features.Analytics.Queries.GetDashboardStats;
 using CleanArchitecture.Core.Features.Analytics.Queries.GetStreamHistory;
 using CleanArchitecture.Core.Interfaces;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace CleanArchitecture.WebApi.Controllers.v1
@@ -54,5 +56,16 @@ namespace CleanArchitecture.WebApi.Controllers.v1
         {
             return Ok(await Mediator.Send(new GetStreamHistoryQuery { ArtistId = artistId, From = from, To = to }));
         }
+
+        /// <summary>
+        /// Gets daily stream counts and unique listener counts for the past N days.
+        /// </summary>
+        [HttpGet("streams/daily")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<DailyStreamDataPoint>))]
+        public async Task<IActionResult> GetDailyStreams([FromQuery] string artistId, [FromQuery] int days = 30)
+        {
+            return Ok(await Mediator.Send(new GetDailyStreamsQuery { ArtistId = artistId, Days = days }));
+        }
     }
 }
+

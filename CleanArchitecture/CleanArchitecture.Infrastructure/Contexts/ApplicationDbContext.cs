@@ -4,7 +4,10 @@ using CleanArchitecture.Infrastructure.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
+using System;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -55,6 +58,13 @@ namespace CleanArchitecture.Infrastructure.Contexts
                         entry.Entity.LastModified = _dateTime.NowUtc;
                         entry.Entity.LastModifiedBy = _authenticatedUser.UserId;
                         break;
+                    case EntityState.Deleted:
+                        // Intercept hard-delete => convert to soft-delete
+                        entry.State = EntityState.Modified;
+                        entry.Entity.IsDeleted = true;
+                        entry.Entity.DeletedDate = _dateTime.NowUtc;
+                        entry.Entity.DeletedBy = _authenticatedUser.UserId;
+                        break;
                 }
             }
             return base.SaveChangesAsync(cancellationToken);
@@ -103,6 +113,21 @@ namespace CleanArchitecture.Infrastructure.Contexts
             .Where(p => p.ClrType == typeof(decimal) || p.ClrType == typeof(decimal?)))
             {
                 property.SetColumnType("decimal(18,6)");
+            }
+
+            // Global Soft Delete Filter — automatically excludes IsDeleted=true records
+            foreach (var entityType in builder.Model.GetEntityTypes())
+            {
+                if (typeof(AuditableBaseEntity).IsAssignableFrom(entityType.ClrType))
+                {
+                    var parameter = System.Linq.Expressions.Expression.Parameter(entityType.ClrType, "e");
+                    var property = System.Linq.Expressions.Expression.Property(parameter, nameof(AuditableBaseEntity.IsDeleted));
+                    var notDeleted = System.Linq.Expressions.Expression.Equal(
+                        property,
+                        System.Linq.Expressions.Expression.Constant(false));
+                    var lambda = System.Linq.Expressions.Expression.Lambda(notDeleted, parameter);
+                    builder.Entity(entityType.ClrType).HasQueryFilter(lambda);
+                }
             }
 
             builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);

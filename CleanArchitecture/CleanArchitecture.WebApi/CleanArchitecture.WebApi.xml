@@ -24,6 +24,26 @@
             Gets stream history for plotting charts for an artist.
             </summary>
         </member>
+        <member name="M:CleanArchitecture.WebApi.Controllers.v1.AnalyticsController.GetDailyStreams(System.String,System.Int32)">
+            <summary>
+            Gets daily stream counts and unique listener counts for the past N days.
+            </summary>
+        </member>
+        <member name="M:CleanArchitecture.WebApi.Controllers.v1.ArtistApplicationController.Create(CleanArchitecture.Core.Features.ArtistApplications.Commands.CreateArtistApplication.CreateArtistApplicationCommand)">
+            <summary>
+            Submit a new artist verification application. (Authenticated listeners only)
+            </summary>
+        </member>
+        <member name="M:CleanArchitecture.WebApi.Controllers.v1.ArtistApplicationController.GetPending">
+            <summary>
+            Get all pending artist applications. (Admin only)
+            </summary>
+        </member>
+        <member name="M:CleanArchitecture.WebApi.Controllers.v1.ArtistApplicationController.Review(System.Guid,CleanArchitecture.Core.Features.ArtistApplications.Commands.ApproveArtistApplication.ApproveArtistApplicationCommand)">
+            <summary>
+            Approve or reject an artist application. (Admin only)
+            </summary>
+        </member>
         <member name="M:CleanArchitecture.WebApi.Controllers.v1.CommentController.Post(CleanArchitecture.Core.Features.Comments.Commands.CreateComment.CreateCommentCommand)">
             <summary>
             Post a new comment or reply to a track.
