@@ -169,5 +169,10 @@
             Delete a music track.
             </summary>
         </member>
+        <member name="M:CleanArchitecture.WebApi.Controllers.v1.UploadController.GetPresignedUrl(CleanArchitecture.WebApi.Controllers.v1.PresignedUrlRequest)">
+            <summary>
+            Generate a presigned URL for uploading a file directly to S3.
+            </summary>
+        </member>
     </members>
 </doc>

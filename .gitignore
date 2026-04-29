@@ -38,3 +38,8 @@ feature_comparison.md
 
 # Environment variables
 .env
+
+# Cache files
+.cache/
+*.cache
+
